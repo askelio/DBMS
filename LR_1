@@ -1,21 +1,59 @@
-Проект: Интернет-магазин авиационной техники
+2) Functional requirements for the project:
 
-Функциональные требования к проекту:
+      User:
+        Authorization
+        verification (user data)
+        CRUD operations (in relation to the user)
 
-  Пользователь:
-    Авторизация, верефикация(пользовательских данных), операции CRUD(по отношению к пользователю)
-  
-  Система ролей:
-    Администратор, менеджер, пользователь(может быть как продавцом так и покупателем)
-  
-  Товары:
-    операции CRUD(по отношению к товарам)
-    Доп операции:
-      покупка товара, продажа товара, выставление на аукцион, предпросмотр
-  
-  Логирование действий:
-    Логирование действий пользователя
-    Логирование действий менеджера
-    Логирование действий администратора
-    Логирование действий связанных с куплей/продажей/выставлением на аукцион товара
+      Role system:
+        administrator
+        manager
+        user
+
+      Products:
+        CRUD operations (in relation to products)
+        Additional operations:
+          purchase of products
+          sale of products
+          putting up products for auction
+          status change of product
+      
+      Category:
+        Adding category for products
+      
+      Suppliers:
+        Adding suppliers for products
+      
+      Rating:
+        Rating the user (manager)
+      
+      Tags:
+        Product tag(Best Selling, Best Price...)
+      
+                    
+      Payment details:
+        CRUD operations (in relation to the payment details)
+
+      Action logging:
+        Logging user actions
+        Logging manager actions
+        Logging administrator actions
+        Logging of actions related to the purchase / sale / auction of goods
+
+3) Essences:
+    User
+    User Roles
+    User status
+    Product
+    Category
+    Supplier
+    Status
+    Auction
+    Order
+    Tags
+    Payment details    
+      
+4) Concept Model:
+    
+    
      
