@@ -42,16 +42,77 @@
 
 3) Essences:
     User
-    User Roles
-    User status
-    Product
-    Category
-    Supplier
-    Status
-    Auction
-    Order
-    Tags
-    Payment details    
+      id            (pk)
+      role_id       (fk)
+      status_id     (fk)
+      name          (varchar)
+      surname       (varchar)
+      email         (varchar)
+      password      (varchar)
+      address       (varchar)
+      dt_created    (timestamp) date of user account creation 
+      dt_updated    (timestamp) date of user account update
+   ------------------------------------------------------------------------------------------------------
+    User Role (defines which role does user have (common user/manager/admin))
+      id           (pk)
+      role_name    (varchar)
+   ------------------------------------------------------------------------------------------------------
+    User status (defines which status does user have (active/blocked))
+      id           (pk)
+      role_name    (varchar)
+   ------------------------------------------------------------------------------------------------------
+    Product (aircrafts sellable and purchased by users)
+      id                (pk)
+      seller_id         (fk)
+      category_id       (fk)
+      supplier_id       (fk)
+      status_id         (fk)
+      product_name      (varchar)
+      product_price     (numeric)
+      dt_created        (timestamp)
+      dt_updated        (timestamp)
+      product_description (varchar)
+   -----------------------------------------------------------------------------------------------------
+    Category (category of product (helicopter/plane/...))
+      id                      (pk)
+      p_category_name         (varchar)
+      p_category_description  (varchar)
+   -----------------------------------------------------------------------------------------------------    
+    Supplier (company which create aircrafts)
+      id                      (pk)
+      p_supplier_name         (varchar)
+      p_supplier_location     (varchar)
+      p_supplier_url          (varchar)
+   ----------------------------------------------------------------------------------------------------
+    Status (status of product(new, used))
+      id               (pk)
+      p_status_name    (varchar)
+   -----------------------------------------------------------------------------------------------------
+    Auction (product may be auctioned for sale)
+      id             (pk)
+      product_id     (fk)
+      start_price    (numeric)
+      step_price     (numeric)
+      dt_created     (timestamp)
+      dt_completed   (timestamp)
+   -----------------------------------------------------------------------------------------------------
+    Order (an onrder of product (many orders can be related to one product))
+      id                   (pk)
+      buyer_id             (fk)
+      product_id           (fk)
+      order_description    (varchar)
+      dt_created           (timestamp)
+      dt_updated           (timestamp)
+   -----------------------------------------------------------------------------------------------------
+    Tags (tag of product (bestseller/most viewed/...))
+      id            (pk)
+      p_tag_name    (varchar)
+   -----------------------------------------------------------------------------------------------------
+    Payment details (defines )
+      id            (pk)
+      product_id    (integer)
+      tag_id        (integer)
+   -----------------------------------------------------------------------------------------------------
       
 4) Concept Model:
     
