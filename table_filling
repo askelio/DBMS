@@ -1,0 +1,606 @@
+-- Fill user roles
+insert into user_role (role_name)
+	values('admin');
+
+insert into user_role (role_name)
+	values('manager');
+	
+insert into user_role (role_name)
+	values('user');	
+	
+	
+-- Fill user statuses
+insert into user_status(status_name)
+	values('fundriser');
+	
+insert into user_status(status_name)
+	values('verified');
+	
+insert into user_status(status_name)
+	values('professional');
+	
+	
+-- Fill users
+INSERT INTO _user(	
+	role_id,
+	status_id,
+	first_name,
+	last_name,
+	email,
+	user_password,
+	address, 
+	dt_created,
+	dt_updated,
+	is_active)
+	
+	VALUES (
+		1,
+		2,
+		'admin',
+		'admin', 
+		'admin@gmail.com',
+		'admin',
+		'Minsk',
+		current_timestamp,
+		current_timestamp, 
+		true
+	);
+	
+INSERT INTO _user(	
+	role_id,
+	status_id,
+	first_name,
+	last_name,
+	email,
+	user_password,
+	address, 
+	dt_created,
+	dt_updated,
+	is_active)
+	
+	VALUES (
+		3,
+		2,
+		'manager',
+		'manager', 
+		'manager@gmail.com',
+		'manager',
+		'Minsk',
+		current_timestamp,
+		current_timestamp, 
+		true
+	);
+	
+INSERT INTO _user(	
+	role_id,
+	status_id,
+	first_name,
+	last_name,
+	email,
+	user_password,
+	address, 
+	dt_created,
+	dt_updated,
+	is_active)
+	
+	VALUES (
+		7,
+		2,
+		'Alex',
+		'Grigorovich', 
+		'grigorovich@gmail.com',
+		'qwerty',
+		'Minsk',
+		current_timestamp,
+		current_timestamp, 
+		true
+	);
+	
+INSERT INTO _user(	
+	role_id,
+	status_id,
+	first_name,
+	last_name,
+	email,
+	user_password,
+	address, 
+	dt_created,
+	dt_updated,
+	is_active)
+	
+	VALUES (
+		7,
+		2,
+		'Dmitry',
+		'Dzhykov', 
+		'dmitry@gmail.com',
+		'qwerty',
+		'Minsk',
+		current_timestamp,
+		current_timestamp, 
+		true
+	);
+	
+--Fill product category
+
+INSERT INTO product_category(	
+	p_category_name, 
+	p_category_description)
+	VALUES ('Turboprop Aircraft', '
+			turboprop, also called P Jet, hybrid engine that provides jet thrust and also drives a propeller. 
+			It is basically similar to a turbojet except that an added turbine, rearward of the 
+			combustion chamber, works through a shaft 
+			and speed-reducing gears to turn a propeller at the front of the engine. turboprop.');
+			
+INSERT INTO product_category(	
+	p_category_name, 
+	p_category_description)
+	VALUES ('Piston Aircraft', '
+			Piston airplanes have one or more piston-powered engines connected a propeller to provide thrust to move the aircraft on the ground and through the air. Piston-powered aircraft most commonly use 100 octane low-leaded fuel and fly at altitudes below 15,000 feet.');
+			
+INSERT INTO product_category(	
+	p_category_name, 
+	p_category_description)
+	VALUES ('Jet Aircraft', '
+A jet aircraft is an aircraft propelled by jet engines. Whereas the engines in propeller-powered aircraft generally achieve their maximum efficiency at much lower speeds and altitudes, jet engines achieve maximum efficiency at speeds close to or even well above the speed of sound.');
+
+
+--Supplier filling
+INSERT INTO product_supplier(
+	p_supplier_name,
+	p_supplier_location,
+	p_supplier_url)
+	VALUES ( 
+		'CESSNA',
+		'USA',
+		'https://cessna.txtav.com/');
+		
+INSERT INTO product_supplier(
+	p_supplier_name,
+	p_supplier_location,
+	p_supplier_url)
+	VALUES ( 
+		'PIPER',
+		'USA',
+		'https://www.piper.com/');
+		
+INSERT INTO product_supplier(
+	p_supplier_name,
+	p_supplier_location,
+	p_supplier_url)
+	VALUES ( 
+		'BEECHCRAFT',
+		'USA',
+		'https://beechcraft.txtav.com/');
+		
+INSERT INTO product_supplier(
+	p_supplier_name,
+	p_supplier_location,
+	p_supplier_url)
+	VALUES ( 
+		'CIRRUS',
+		'USA',
+		'https://cirrusaircraft.com/');
+		
+INSERT INTO product_supplier(
+	p_supplier_name,
+	p_supplier_location,
+	p_supplier_url)
+	VALUES ( 
+		'SOCATA',
+		'FRANCE',
+		''
+	);
+
+--Fill product_status
+
+
+
+--Fill products 
+
+INSERT INTO public.product(
+	seller_id,
+	category_id,
+	supplier_id,
+	status_id,
+	product_name,
+	product_price,
+	dt_created, 
+	dt_updated,
+	product_description)
+	VALUES (
+		4,
+		1,
+		1,
+		4,
+		'GRAND CARAVAN EX',
+		1000000,
+		current_timestamp,
+		current_timestamp, 
+		'No description'
+	);
+	
+INSERT INTO public.product(
+	seller_id,
+	category_id,
+	supplier_id,
+	status_id,
+	product_name,
+	product_price,
+	dt_created, 
+	dt_updated,
+	product_description)
+	VALUES (
+		4,
+		1,
+		1,
+		4,
+		'CESSNA CARAVAN EX',
+		1800000,
+		current_timestamp,
+		current_timestamp, 
+		'No description'
+	);
+	
+INSERT INTO public.product(
+	seller_id,
+	category_id,
+	supplier_id,
+	status_id,
+	product_name,
+	product_price,
+	dt_created, 
+	dt_updated,
+	product_description)
+	VALUES (
+		4,
+		1,
+		1,
+		4,
+		'CESSNA SKYCOURIER EX',
+		1000000,
+		current_timestamp,
+		current_timestamp, 
+		'No description'
+	);
+
+
+INSERT INTO public.product(
+	seller_id,
+	category_id,
+	supplier_id,
+	status_id,
+	product_name,
+	product_price,
+	dt_created, 
+	dt_updated,
+	product_description)
+	VALUES (
+		4,
+		2,
+		1,
+		4,
+		'CESSNA TURBO STATIONAR HD',
+		1000000,
+		current_timestamp,
+		current_timestamp, 
+		'No description'
+	);
+	
+INSERT INTO public.product(
+	seller_id,
+	category_id,
+	supplier_id,
+	status_id,
+	product_name,
+	product_price,
+	dt_created, 
+	dt_updated,
+	product_description)
+	VALUES (
+		4,
+		2,
+		1,
+		4,
+		'CESSNA TURBO SKYLINE',
+		1000000,
+		current_timestamp,
+		current_timestamp, 
+		'No description'
+	);	
+	
+INSERT INTO public.product(
+	seller_id,
+	category_id,
+	supplier_id,
+	status_id,
+	product_name,
+	product_price,
+	dt_created, 
+	dt_updated,
+	product_description)
+	VALUES (
+		4,
+		2,
+		1,
+		4,
+		'CESSNA SKYLINE',
+		1000000,
+		current_timestamp,
+		current_timestamp, 
+		'No description'
+	);
+	
+INSERT INTO public.product(
+	seller_id,
+	category_id,
+	supplier_id,
+	status_id,
+	product_name,
+	product_price,
+	dt_created, 
+	dt_updated,
+	product_description)
+	VALUES (
+		4,
+		2,
+		1,
+		4,
+		'CESSNA SYHAWK',
+		1004500,
+		current_timestamp,
+		current_timestamp, 
+		'No description'
+	);
+	
+INSERT INTO public.product(
+	seller_id,
+	category_id,
+	supplier_id,
+	status_id,
+	product_name,
+	product_price,
+	dt_created, 
+	dt_updated,
+	product_description)
+	VALUES (
+		4,
+		3,
+		1,
+		4,
+		'CITATION M2 GEN2',
+		1999999,
+		current_timestamp,
+		current_timestamp, 
+		'No description'
+	);
+	
+INSERT INTO public.product(
+	seller_id,
+	category_id,
+	supplier_id,
+	status_id,
+	product_name,
+	product_price,
+	dt_created, 
+	dt_updated,
+	product_description)
+	VALUES (
+		4,
+		1,
+		6,
+		4,
+		'BONANZA G36',
+		1880000,
+		current_timestamp,
+		current_timestamp, 
+		'No description'
+	);
+	
+	
+INSERT INTO public.product(
+	seller_id,
+	category_id,
+	supplier_id,
+	status_id,
+	product_name,
+	product_price,
+	dt_created, 
+	dt_updated,
+	product_description)
+	VALUES (
+		4,
+		1,
+		6,
+		4,
+		'BARON G58',
+		2880000,
+		current_timestamp,
+		current_timestamp, 
+		'No description'
+	);
+	
+INSERT INTO public.product(
+	seller_id,
+	category_id,
+	supplier_id,
+	status_id,
+	product_name,
+	product_price,
+	dt_created, 
+	dt_updated,
+	product_description)
+	VALUES (
+		4,
+		1,
+		8,
+		4,
+		'TBM 960',
+		3980000,
+		current_timestamp,
+		current_timestamp, 
+		'No description'
+	);
+
+
+-- Fill product tag
+INSERT INTO public.product_tag(	
+	p_tag_name)
+	VALUES ('Best seller');
+	
+INSERT INTO public.product_tag(	
+	p_tag_name)
+	VALUES ('Top of this year');
+	
+INSERT INTO public.product_tag(	
+	p_tag_name)
+	VALUES ('Recomended for you');
+	
+INSERT INTO public.product_tag(	
+	p_tag_name)
+	VALUES ('best value for money');
+	
+-- Fill product_has_tag
+INSERT INTO public.product_has_tag(
+	product_id, tag_id)
+	VALUES (
+		1,
+		1);
+		
+INSERT INTO public.product_has_tag(
+	product_id, tag_id)
+	VALUES (
+		2,
+		1);
+		
+INSERT INTO public.product_has_tag(
+	product_id, tag_id)
+	VALUES (
+		3,
+		1);
+		
+INSERT INTO public.product_has_tag(
+	product_id, tag_id)
+	VALUES (
+		1,
+		2);
+		
+INSERT INTO public.product_has_tag(
+	product_id, tag_id)
+	VALUES (
+		3,
+		2);
+		
+INSERT INTO public.product_has_tag(
+	product_id, tag_id)
+	VALUES (
+		5,
+		4);
+		
+INSERT INTO public.product_has_tag(
+	product_id, tag_id)
+	VALUES (
+		6,
+		4);
+		
+INSERT INTO public.product_has_tag(
+	product_id, tag_id)
+	VALUES (
+		7,
+		4);
+		
+--Fill auction
+INSERT INTO public.auction(
+	product_id,
+	start_price,
+	step_price,
+	dt_created,
+	dt_completed)
+	VALUES (8,
+			1900000,
+			20000,
+			current_timestamp,
+			current_timestamp);
+			
+INSERT INTO public.auction(
+	product_id,
+	start_price,
+	step_price,
+	dt_created,
+	dt_completed)
+	VALUES (9,
+			2988000,
+			45000,
+			current_timestamp,
+			current_timestamp);
+
+-- Order filling
+INSERT INTO public.product_order(
+	
+	byer_id,
+	product_id,
+	order_description,
+	dt_updated)
+	VALUES (
+		5,
+		1,
+		'No desctiption',
+		current_timestamp,
+		current_timestamp);
+
+
+INSERT INTO public.product_order(	
+	byer_id,
+	product_id,
+	order_description,
+	dt_created,
+	dt_updated)
+	VALUES (
+		5,
+		2,
+		'No desctiption',
+		current_timestamp,
+		current_timestamp);
+		
+-- Payment details filling
+
+INSERT INTO public.payment_details(
+	order_id,
+	payment_description,
+	payment_method,
+	dt_created,
+	dt_updated,
+	is_allowed,
+	is_completed)
+	VALUES (1,
+			'No',
+			'VISA',
+			current_timestamp,
+			current_timestamp,
+			true,
+			true);
+			
+INSERT INTO public.payment_details(
+	order_id,
+	payment_description,
+	payment_method,
+	dt_created,
+	dt_updated,
+	is_allowed,
+	is_completed)
+	VALUES (2,
+			'No',
+			'MASTERCARD',
+			current_timestamp,
+			current_timestamp,
+			true,
+			false);
+			
+	
+
+
+
+
+
+
+	

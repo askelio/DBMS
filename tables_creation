@@ -1,0 +1,157 @@
+-- CREATE DATABASE lr_db;
+
+create table if not exists user_role (
+	u_role_id serial primary key unique,
+    role_name varchar(256)
+);
+   
+create table if not exists user_status (
+	u_status_id serial primary key unique,
+	status_name varchar(256)
+);
+create table if not exists _user(
+	user_id serial primary key unique,
+	role_id int,
+	status_id int,
+	first_name varchar(256) not null,
+	last_name varchar(256) not null,
+	email varchar(256) not null unique,
+	user_password varchar(32) not null,
+	address varchar(256) default 'No address',
+	
+	dt_created timestamp, 
+	dt_updated timestamp,
+	
+	is_active boolean default true,
+	
+	constraint FK_user_role foreign key(role_id)
+		references user_role(u_role_id)
+		on delete cascade,
+	
+	constraint FK_user_status foreign key(status_id)
+		references user_status(u_status_id)
+		on delete set null	
+);
+
+create table if not exists product_status(
+	p_status_id serial primary key unique,
+	p_status_name varchar(256) not null
+);
+
+create table if not exists product_category(
+	p_category_id serial primary key unique,
+	p_category_name varchar(256) not null,
+	p_category_description varchar(2048) default 'No description'	
+);
+
+create table if not exists product_supplier(
+	p_supplier_id serial primary key unique,
+	p_supplier_name varchar(256) not null,
+	p_supplier_location varchar(256) default 'No location',
+	p_supplier_url varchar(2048) default 'No url'
+);
+
+create table if not exists product(
+	product_id serial primary key unique,
+	seller_id int,
+	category_id int,
+	supplier_id int,
+	status_id int,
+	
+	product_name varchar(256) not null,
+	product_price numeric check(product_price >= 0),
+	
+	dt_created timestamp,
+	dt_updated timestamp,
+	
+	product_description varchar(2048) default 'No descriprion',
+	
+	constraint FK_product_seller foreign key(seller_id)
+		references _user(user_id)
+		on delete cascade,
+	
+	constraint FK_product_category foreign key(category_id)
+		references product_category(p_category_id)
+		on delete cascade,
+	
+	constraint FK_product_supplier foreign key(supplier_id)
+		references product_supplier(p_supplier_id)
+		on delete set null,
+	
+	constraint FK_product_status foreign key(status_id)
+		references product_status(p_status_id)
+		on delete set null
+);
+
+create table if not exists product_tag(
+	p_tag_id serial primary key unique,
+	p_tag_name varchar(256) not null
+);
+
+create table if not exists product_has_tag(
+	p_has_tag_id serial primary key unique,
+	product_id int,
+	tag_id int,
+	
+	constraint FK_product_id foreign key(product_id)
+		references product(product_id)
+		on delete cascade,
+	constraint FK_tag_id foreign key(tag_id)
+		references product_tag(p_tag_id)
+		on delete set null	
+);
+
+create table if not exists auction(
+	auction_id serial primary key unique,
+	product_id	int unique ,
+	start_price numeric not null check(start_price >= 0),
+	step_price numeric not null check(step_price >0),
+	dt_created timestamp,
+	dt_completed timestamp,
+	
+	constraint FK_product_id foreign key(product_id)
+		references product(product_id)
+		on delete cascade
+);
+
+create table if not exists product_order(
+	order_id serial primary key unique,
+	byer_id int,
+	product_id int,
+	order_description varchar(2048) default 'No order description',
+	dt_created timestamp,
+	dt_updated timestamp,
+	
+	constraint FK_byer_id foreign key(byer_id)
+		references _user(user_id)
+		on delete set null,
+	
+	constraint FK_product_id foreign key(product_id)
+		references product(product_id)
+		on delete set null	
+);
+
+create table if not exists payment_details(
+	payment_id serial primary key unique,
+	order_id int unique,
+	payment_description varchar(2048) default 'No payment description',
+	payment_method varchar(256) not null,
+	dt_created timestamp,
+	dt_updated timestamp,
+	
+	is_allowed boolean default false,
+	is_completed boolean default false,
+	
+	constraint FK_order_id foreign key(order_id)
+		references product_order(order_id)
+		on delete set null		
+)
+
+
+
+
+   
+    
+      
+   
+    

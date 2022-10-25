@@ -1,0 +1,113 @@
+--query pool
+
+-- CRUD
+
+select * from user_role;
+
+insert into user_role(role_name)
+	values('test_role');
+	
+update user_role
+	set role_name = 'test_user_role'
+	where role_name = 'test_role';
+	
+delete from user_role
+	where role_name = 'test_user_role';
+
+
+-- ORDER BY
+
+select product_name, product_price 
+	from product
+	order by product_price desc;
+
+
+-- MIN/MAX
+
+select max(product_price)
+	from product;
+	
+select min(product_price)
+	from product;
+	
+
+-- COUNT/AVG/SUM
+
+select count(product_name)
+	from product
+	where product_name = 'TBM 960';
+	
+select avg(product_price)
+	from product;
+
+select sum(product_price)
+	from product;
+	
+
+-- LIKE
+
+select count(product_name)
+	from product
+	where product_name like 'CESSNA%';
+	
+
+select product_name,product_price
+	from product
+	where product_name like 'CESSNA%';
+
+
+-- JOINS
+
+select product.product_id,product.product_name,product.product_price,
+	product_order.order_description, product_order.dt_created
+	from product
+	inner join product_order on product_order.product_id = product.product_id;
+	
+select product.product_id,product.product_name,product.product_price,
+	product_order.order_description, product_order.dt_created
+	from product
+	left outer join product_order on product_order.product_id = product.product_id;
+	
+select product.product_id,product.product_name,product.product_price,
+	product_order.order_description, product_order.dt_created
+	from product
+	right outer join product_order on product_order.product_id = product.product_id;
+	
+select product.product_id,product.product_name,product.product_price,
+	product_order.order_description, product_order.dt_created
+	from product
+	full outer join product_order on product_order.product_id = product.product_id;
+	
+
+-- UNION
+
+select product_supplier.p_supplier_name
+	from product_supplier
+	
+	union all
+	
+select product.product_name
+	from product;
+	
+
+-- GROUP BY and more COMPLEX queries
+
+select p_supplier_name,count(product_name) 
+	from product
+	full outer join product_supplier
+	on supplier_id = p_supplier_id
+	group by p_supplier_name;
+	
+	
+	
+
+
+
+
+	
+
+	
+
+	
+
+
