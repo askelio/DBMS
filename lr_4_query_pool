@@ -1,0 +1,107 @@
+-- Queries with complex conditions 
+
+-- To see users with role USER and status VERIFIED and address Minsk
+select email from _user 
+	where role_id=3 and status_id=2 and address='Minsk';
+	
+-- To see product suppliers from USA and suppliers that have url to their web platform
+select p_supplier_name from product_supplier
+	where p_supplier_location='USA' and p_supplier_url is not null;
+	
+-- Nested queries
+
+select product_name, product_price from product
+	where category_id in(
+		select p_category_id from product_category
+			where p_category_name like '%Piston%'
+	);
+	
+select product_name, product_price from product
+	where product_id in(
+		select product_id from product_has_tag
+			where tag_id in(
+				select tag_id from product_tag
+					where p_tag_name like '%Best%'
+			)
+	)
+
+-- Other complex samples
+
+select email from _user
+	where user_id in(
+		select byer_id from product_order
+			where order_id in(
+				select order_id from payment_details
+					where payment_method='VISA'
+			) and product_id in(
+				select product_id from product
+					where status_id in(
+						select status_id from product_status
+							where p_status_name='new'
+					)
+			)
+	)
+	
+-- JOINS with viws
+
+create view order_inner as 
+	select product.product_id,product.product_name,product.product_price,
+		product_order.order_description, product_order.dt_created
+		from product
+		inner join product_order on product_order.product_id = product.product_id;
+		
+create view order_left as 
+	select product.product_id,product.product_name,product.product_price,
+		product_order.order_description, product_order.dt_created
+		from product
+		left outer join product_order on product_order.product_id = product.product_id;
+	
+create view order_rigth as 
+	select product.product_id,product.product_name,product.product_price,
+		product_order.order_description, product_order.dt_created
+		from product
+		right outer join product_order on product_order.product_id = product.product_id;
+	
+create view order_full as 
+	select product.product_id,product.product_name,product.product_price,
+		product_order.order_description, product_order.dt_created
+		from product
+		full outer join product_order on product_order.product_id = product.product_id;
+
+select * from order_inner;
+select * from order_left;
+select * from order_rigth;
+select * from order_full;
+
+
+-- Having 
+
+select count(product_id), p_tag_name from product_tag
+	inner join product_has_tag on product_has_tag.tag_id = product_tag.p_tag_id
+		group by p_tag_name
+			having count(p_tag_name)<3;
+
+	
+-- insert into select 
+
+insert into product_tag (p_tag_name)
+	select p_status_name from product_status
+		where p_status_name = 'new'
+		
+-- Case
+
+select product_name, product_price,
+	case 
+		when product_price < 2000000 then 'Less than two millions'
+		when product_price > 3000000 then 'More than three millions'
+	end as product_price_text
+	from product;
+	
+-- explain
+
+explain select count(product_id), p_tag_name from product_tag
+	inner join product_has_tag on product_has_tag.tag_id = product_tag.p_tag_id
+		group by p_tag_name
+			having count(p_tag_name)<3;
+
+
